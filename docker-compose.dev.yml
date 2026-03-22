@@ -18,7 +18,7 @@ services:
 
   server:
     build:
-      context: .
+      context: ./server
       dockerfile: Dockerfile
     container_name: ai_copilot_server
     restart: unless-stopped
@@ -31,12 +31,31 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - ./server/uploads:/app/server/uploads
-      - uploads_data:/app/server/uploads
+      - ./server:/app
+      - /app/node_modules
+      - uploads_data:/app/uploads
     networks:
       - copilot_network
 
-  volumes:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: ai_copilot_client
+    restart: unless-stopped
+    env_file:
+      - ./client/.env
+    ports:
+      - '5173:5173'
+    depends_on:
+      - server
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      - copilot_network
+
+volumes:
   mongo_data:
   uploads_data:
 
