@@ -56,6 +56,9 @@ app.use('/api', globalLimiter);
 // Static files (uploaded resumes)
 app.use('/uploads', express.static('uploads'));
 
+// Serve React app
+app.use(express.static('public'));
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ success: true, message: 'AI Career Copilot API is running', timestamp: new Date() });
@@ -66,6 +69,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/voice-interview', voiceInterviewRoutes);
+
+// Catch-all handler for React app (must be last)
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
 
 // Error handling
 app.use(notFound);
