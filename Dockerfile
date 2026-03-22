@@ -11,7 +11,7 @@ COPY . .
 RUN cd server && npm ci
 
 # Install client dependencies and build
-RUN cd client && npm ci && npm run build
+RUN cd client && npm ci && npm run build && ls -la dist/
 
 # Production stage
 FROM node:20-alpine AS production
@@ -22,7 +22,8 @@ COPY server/package*.json ./
 RUN npm ci --only=production
 
 # Copy built client from builder stage
-COPY --from=builder /app/client/dist ./server/public
+COPY --from=builder /app/client/dist ./public
+RUN ls -la public/
 
 # Copy server source
 COPY server/ ./server/
