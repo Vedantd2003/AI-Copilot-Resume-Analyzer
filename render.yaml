@@ -5,20 +5,14 @@ services:
   # Name of your service
   name: ai-career-copilot
   
-  # Runtime environment
-  runtime: node
-  
-  # Build configuration
-  buildCommand: cd server && npm install && cd ../client && npm install && npm run build
-  
-  # Start command
-  startCommand: cd server && npm start
+  # Use Docker deployment
+  env: docker
   
   # Environment variables
   envVars:
-    # MongoDB connection
+    # MongoDB connection (set in Render dashboard)
     - key: MONGODB_URI
-      value: mongodb+srv://abc844023_db_user:XOqo2E3NIMer1Q3b@cluster0.lnbc7l5.mongodb.net/?appName=Cluster0
+      sync: false
     # Server configuration
     - key: PORT
       value: 10000
@@ -26,19 +20,19 @@ services:
       value: production
     - key: CLIENT_URL
       value: https://ai-copilot-resume-analyzer.onrender.com
-    # JWT secrets
+    # JWT secrets (set in Render dashboard)
     - key: JWT_ACCESS_SECRET
-      value: ai_copilot_access_secret_2024_secure_key
+      sync: false
     - key: JWT_REFRESH_SECRET
-      value: ai_copilot_refresh_secret_2024_secure_key
-    # Email configuration (optional - set in Render dashboard if needed)
+      sync: false
+    # Email configuration (set in Render dashboard if needed)
     - key: EMAIL_USER
       sync: false
     - key: EMAIL_PASS
       sync: false
-    # Gemini API key
+    # Gemini API key (set in Render dashboard)
     - key: GEMINI_API_KEY
-      value: AIzaSyBrfG1r3-trZUJciroSsrRV28rhkA4nQJA
+      sync: false
 
 # Health check path
 healthCheckPath: /api/health

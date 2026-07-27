@@ -35,7 +35,7 @@ RUN mkdir -p uploads
 RUN apk add --no-cache python3 make g++
 
 # Expose port
-EXPOSE 5000
+EXPOSE 10000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
