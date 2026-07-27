@@ -16,9 +16,9 @@ services:
   
   # Environment variables
   envVars:
-    # MongoDB connection (set in Render dashboard - use MongoDB Atlas)
+    # MongoDB connection
     - key: MONGODB_URI
-      sync: false
+      value: mongodb+srv://abc844023_db_user:XOqo2E3NIMer1Q3b@cluster0.lnbc7l5.mongodb.net/?appName=Cluster0
     # Server configuration
     - key: PORT
       value: 10000
@@ -26,19 +26,19 @@ services:
       value: production
     - key: CLIENT_URL
       value: https://ai-copilot-resume-analyzer.onrender.com
-    # JWT secrets (set these in Render dashboard)
+    # JWT secrets
     - key: JWT_ACCESS_SECRET
-      sync: false
+      value: ai_copilot_access_secret_2024_secure_key
     - key: JWT_REFRESH_SECRET
-      sync: false
-    # Email configuration (set these in Render dashboard)
+      value: ai_copilot_refresh_secret_2024_secure_key
+    # Email configuration (optional - set in Render dashboard if needed)
     - key: EMAIL_USER
       sync: false
     - key: EMAIL_PASS
       sync: false
-    # Gemini API key (set this in Render dashboard)
+    # Gemini API key
     - key: GEMINI_API_KEY
-      sync: false
+      value: AIzaSyBrfG1r3-trZUJciroSsrRV28rhkA4nQJA
 
 # Health check path
 healthCheckPath: /api/health
