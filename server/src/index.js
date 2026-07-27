@@ -64,6 +64,11 @@ app.get('/health', (req, res) => {
   res.json({ success: true, message: 'AI Career Copilot API is running', timestamp: new Date() });
 });
 
+// Health check for Render (api/health)
+app.get('/api/health', (req, res) => {
+  res.json({ success: true, message: 'AI Career Copilot API is running', timestamp: new Date() });
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/ai', aiRoutes);

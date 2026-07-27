@@ -9,23 +9,23 @@ services:
   runtime: node
   
   # Build configuration
-  buildCommand: cd server && npm install && cd ../client && npm install && cd ../server && npm run build
+  buildCommand: cd server && npm install && cd ../client && npm install && npm run build
   
   # Start command
   startCommand: cd server && npm start
   
   # Environment variables
   envVars:
-    # MongoDB connection
+    # MongoDB connection (set in Render dashboard - use MongoDB Atlas)
     - key: MONGODB_URI
-      value: mongodb://mongo:mongodb@mongo:27017/ai_career_copilot
+      sync: false
     # Server configuration
     - key: PORT
       value: 10000
     - key: NODE_ENV
       value: production
     - key: CLIENT_URL
-      value: https://ai-career-copilot.onrender.com
+      value: https://ai-copilot-resume-analyzer.onrender.com
     # JWT secrets (set these in Render dashboard)
     - key: JWT_ACCESS_SECRET
       sync: false
